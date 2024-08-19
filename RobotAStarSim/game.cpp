@@ -23,9 +23,9 @@ global_var bool runevents = true;
 //^do not mess with names, meant to be constants
 
 //basic elements
-#include "renderer.cpp"
-#include "events.cpp"
-#include "objects.cpp"
+#include "TaffyGraphicEngine/renderer.cpp"
+#include "TaffyGraphicEngine/events.cpp"
+#include "TaffyGraphicEngine/objects.cpp"
 
 //game elements
 global_var u8 levelUnlocked = 1;

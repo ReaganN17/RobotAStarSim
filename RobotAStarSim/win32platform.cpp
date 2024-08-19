@@ -1,6 +1,6 @@
 #include <windows.h>
-#include "MyUtils.cpp"
-#include "platformcommon.cpp"
+#include "TaffyGraphicEngine/MyUtils.cpp"
+#include "TaffyGraphicEngine/platformcommon.cpp"
 #include "game.cpp";
 
 #ifdef _MSC_VER

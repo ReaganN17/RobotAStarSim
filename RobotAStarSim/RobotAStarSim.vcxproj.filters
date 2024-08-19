@@ -18,56 +18,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="basicEvents.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="events.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="MathUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="MyUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="objects.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="OtherUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="platformcommon.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="renderer.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="RGBUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
     <ClCompile Include="Screen.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="STBI_ImageUtils.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="uibuttons.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="uiobjects.cpp">
-      <Filter>Source Files\EngineBase</Filter>
-    </ClCompile>
-    <ClCompile Include="win32platform.cpp">
-      <Filter>Source Files\EngineBase</Filter>
     </ClCompile>
     <ClCompile Include="FieldGrid.cpp">
       <Filter>Source Files</Filter>
@@ -77,6 +29,54 @@
     </ClCompile>
     <ClCompile Include="FieldObjects.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\basicEvents.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\camera.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\events.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\ImageUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\MathUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\MyUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\objects.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\OtherUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\platformcommon.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\renderer.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\RGBUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\STBI_ImageUtils.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\uibuttons.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="graphic engine\uiobjects.cpp">
+      <Filter>Source Files\EngineBase</Filter>
+    </ClCompile>
+    <ClCompile Include="win32platform.cpp">
+      <Filter>Source Files\EngineBase</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
