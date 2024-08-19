@@ -17,6 +17,13 @@ bool linesIntersect(float x1, float y1, float x2, float y2, float x3, float y3, 
 	return uA >= 0 && uA <= 1 && uB >= 0 && uB <= 1;
 }
 
+bool lineIntersectRect(float x0, float y0, float x1, float y1, float xr, float yr, float wr, float hr) {
+	return linesIntersect(x0, y0, x1, y1, xr - wr * 0.5, yr - hr * 0.5, xr + wr * 0.5, yr - hr * 0.5) ||
+		linesIntersect(x0, y0, x1, y1, xr + wr * 0.5, yr - hr * 0.5, xr + wr * 0.5, yr + hr * 0.5) ||
+		linesIntersect(x0, y0, x1, y1, xr + wr * 0.5, yr + hr * 0.5, xr - wr * 0.5, yr + hr * 0.5) ||
+		linesIntersect(x0, y0, x1, y1, xr - wr * 0.5, yr + hr * 0.5, xr - wr * 0.5, yr - hr * 0.5);
+}
+
 bool lineIntersectCircle(float x0, float y0, float x1, float y1, float x2, float y2, float r2) {
 	float b = 2.f * ((x0 - x2) * (x1 - x0) + (y0 - y2) * (y1 - y0));
 	float c = ((x0 - x2) * (x0 - x2) + (y0 - y2) * (y0 - y2) - r2 * r2);
@@ -30,6 +37,10 @@ bool lineIntersectCircle(float x0, float y0, float x1, float y1, float x2, float
 	return ((0 <= val1 && val1 <= 1) || (0 <= val2 && val2 <= 1));
 }
 
+bool pointOnLine(float px, float py, float x0, float y0, float x1, float y1) {
+	return (x1 - x0) * py - (y1 - y0) * px - x1 * y0 + x0 * y1 == 0;
+}
+
 float heuristicRaw(float x0, float y0, float x1, float y1) {
 	return sqrtf((x1 - x0) * (x1 - x0) + (y1 - y0) * (y1 - y0));
 }
@@ -37,5 +48,7 @@ float heuristicRaw(float x0, float y0, float x1, float y1) {
 float pointFromLine(float x0, float y0, float x1, float y1, float xp, float yp) {
 	return abs((x1 - x0) * yp - (y1 - y0) * xp - x1 * y0 + x0 * y1) / heuristicRaw(x0, y0, x1, y1);
 }
+
+
 
 
