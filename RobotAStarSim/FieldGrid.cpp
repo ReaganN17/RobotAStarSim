@@ -3,7 +3,6 @@
 struct FieldNode {
 	bool obstacle = false;
 	bool visited = false;
-	bool path = false;
 	float fGlobalGoal;
 	float fLocalGoal;
 	u16 x, y;
@@ -22,6 +21,8 @@ struct FieldGrid : Object {
 	FieldNode* endNode = nullptr;
 
 	FieldObjects* fobjs = nullptr;
+
+	vector<FieldNode*> pivots;
 
 	//Default Constructor
 	FieldGrid();
@@ -56,6 +57,13 @@ struct FieldGrid : Object {
 	//generate path, return true if path made
 	bool pathFind();
 
+	//generates pivots (connections where obstacles do not touch)
+	bool createPivots();
+
+	float lineTouchingAnyFF(FieldNode* l1, FieldNode* l2);
+	
+	float pointFromLineFF(FieldNode* l1, FieldNode* l2, FieldNode* point);
+
 	//render rectangles and field
 	void render();
 
@@ -84,6 +92,8 @@ FieldGrid::FieldGrid(const char* file, float px, float py, float winch, float hi
 	gyscale = hinch / gh; 
 
 	createWObstacles(gw, gh);
+
+	ob.cameraLinked = false;
 }
 
 
@@ -103,7 +113,6 @@ void FieldGrid::createEmpty(int w, int h) {
 			nodes[y * gw + x].x = x;
 			nodes[y * gw + x].y = y;
 			nodes[y * gw + x].obstacle = false;
-			nodes[y * gw + x].path = false;
 			nodes[y * gw + x].parent = nullptr;
 			nodes[y * gw + x].visited = false;
 		}
@@ -152,7 +161,6 @@ void FieldGrid::createWObstacles(int w, int h) {
 			nodes[y * gw + x].x = x;
 			nodes[y * gw + x].y = y;
 			nodes[y * gw + x].obstacle = fobjs->pointIsTouchingAny(x * gxscale + 0.5 * gxscale, y * gyscale + 0.5 * gyscale);
-			nodes[y * gw + x].path = false;
 			nodes[y * gw + x].parent = nullptr;
 			nodes[y * gw + x].visited = false;
 			
@@ -224,7 +232,6 @@ void FieldGrid::reset() {
 			nodes[y * gw + x].fGlobalGoal = INFINITY;
 			nodes[y * gw + x].fLocalGoal = INFINITY;
 			nodes[y * gw + x].parent = nullptr;
-			nodes[y * gw + x].path = false;
 		}
 	}
 }
@@ -296,6 +303,69 @@ bool FieldGrid::pathFind() {
 	return endNode->parent != nullptr;
 }
 
+bool FieldGrid::createPivots() {
+	pivots.clear();
+
+	if (endNode == nullptr || endNode->parent == nullptr) return false;
+
+	pivots.push_back(endNode);
+	pivots.push_back(startNode);
+
+	FieldNode* curNode = nullptr;
+	FieldNode* pivotNode = nullptr;
+	int curIndex = 0;
+
+	while (curIndex < pivots.size() - 1) {
+
+		curNode = pivots.at(curIndex)->parent;
+
+		if (lineTouchingAnyFF(pivots.at(curIndex), pivots.at(curIndex + 1))) {
+
+			float maxD = -1;
+
+			while (curNode != pivots.at(curIndex + 1)) {
+
+				float d = pointFromLineFF(pivots.at(curIndex), pivots.at(curIndex + 1), curNode);
+
+				if (maxD < d) {
+					maxD = d;
+					pivotNode = curNode;
+				}
+
+				curNode = curNode->parent;
+			}
+
+			if (pivotNode != nullptr) {
+				pivots.insert(pivots.begin() + curIndex + 1, pivotNode);
+				pivotNode = nullptr;
+			}
+			else {
+				curIndex++;
+			}
+
+		}
+		else {
+			curIndex++;
+		}
+
+
+	}
+
+	return true;
+}
+
+float FieldGrid::pointFromLineFF(FieldNode* l1, FieldNode* l2, FieldNode* point) {
+	return pointFromLine(l1->x, l1->y, l2->x, l2->y, point->x, point->y);
+}
+
+float FieldGrid::lineTouchingAnyFF(FieldNode* l1, FieldNode* l2){
+	return fobjs->lineIsTouchingAny(
+		l1->x * gxscale + 0.5 * gxscale,
+		l1->y * gyscale + 0.5 * gyscale,
+		l2->x * gxscale + 0.5 * gxscale,
+		l2->y * gyscale + 0.5 * gyscale);
+}
+
 void FieldGrid::render() {
 	Object::render();
 
@@ -304,9 +374,20 @@ void FieldGrid::render() {
 
 	for (int i = 0; i < gw; i++) {
 		for (int h = 0; h < gh; h++) {
-			if (nodes[h * gw + i].path) drawGridNode(i, h, 0.5, 0xffffff);
 			if (nodes[h * gw + i].obstacle) drawGridNode(i, h, 0.5, 0x8f8f8f);
 		}
+	}
+
+	FieldNode* curNode = endNode;
+	while (curNode != nullptr) {
+
+		drawGridNode(curNode->x, curNode->y, 0.5, 0xffffff);
+
+		curNode = curNode->parent;
+	}
+
+	for (auto i : pivots) {
+		drawGridNode(i->x, i->y, 0.5, 0x0000ff);
 	}
 
 	

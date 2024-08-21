@@ -31,7 +31,7 @@ struct MapScreen : BasicEvent {
 		new (&bRpillar) FieldObject(424.65, 228.3, (22.627 + 16.5 + 2.5)); bRpillar.obstacle = true; fobjs.add(&bRpillar);
 		new (&bLpillar) FieldObject(424.5, 127.5, (22.627 + 16.5 + 2.5)); bLpillar.obstacle = true; fobjs.add(&bLpillar);
 		
-		new(&fg) FieldGrid("resources/map.png", 0, 0, 650, 360, 1, 5, &fobjs);
+		new(&fg) FieldGrid("resources/map.png", 0, 0, 650, 360, 1.5, 5, &fobjs);
 		new(&path) AutoPath(&fg);
 	}
 
@@ -39,10 +39,12 @@ struct MapScreen : BasicEvent {
 		if (isdown(SHIFT) && pressed(LEFT_MOUSE)) { fg.setStart(((mouse.x - fg.dx) / fg.scale / fg.gxscale) - 0.5, ((mouse.y - fg.dy) / fg.scale / fg.gyscale) - 0.5); }
 		if (isdown(CTRL) && pressed(LEFT_MOUSE)) { fg.setEnd(((mouse.x - fg.dx) / fg.scale / fg.gxscale) - 0.5, ((mouse.y - fg.dy) / fg.scale / fg.gyscale) - 0.5); }
 
-		if (pressed(KEY_1)) { fg.pathFind(); path.createGridPath(); }
-		if (pressed(KEY_2)) { path.createPivotPath(); }
+		if (pressed(KEY_1)) { fg.pathFind(); }
+		if (pressed(KEY_2)) { fg.createPivots(); }
 		if (pressed(KEY_3)) { path.createAutoPath(); }
 
+
+		debug_num = fg.pivots.size();
 	}
 
 

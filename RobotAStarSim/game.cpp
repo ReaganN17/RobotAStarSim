@@ -27,17 +27,11 @@ global_var bool runevents = true;
 #include "TaffyGraphicEngine/events.cpp"
 #include "TaffyGraphicEngine/objects.cpp"
 
-//game elements
-global_var u8 levelUnlocked = 1;
-global_var u8 curLevel = 0;
-
 static float debug_num = 0;
 
 #include "Screen.cpp"
 
 BasicEvent* screen = nullptr;
-
-
 
 internal void gameinit() {
 	clearEntireScreen(0x000000);
