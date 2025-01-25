@@ -131,12 +131,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cpp\Astar.cpp" />
-    <ClCompile Include="cpp\FieldObjectHandler.cpp" />
-    <ClCompile Include="cpp\MyMathUtils.cpp" />
-    <ClCompile Include="cpp\mock WPI\Translation2d.cpp" />
-    <ClCompile Include="cpp\PathPointGen.cpp" />
-    <ClCompile Include="cpp\FieldObject.cpp" />
+    <ClCompile Include="cpp\FieldObjects\CircleFO.cpp" />
+    <ClCompile Include="cpp\FieldObjects\FieldObject.cpp" />
+    <ClCompile Include="cpp\FieldObjects\FOHandler.cpp" />
+    <ClCompile Include="cpp\FieldObjects\PolygonFO.cpp" />
+    <ClCompile Include="cpp\FieldObjects\RectFO.cpp" />
+    <ClCompile Include="cpp\Generator\AStar.cpp" />
+    <ClCompile Include="cpp\Generator\PathGen.cpp" />
+    <ClCompile Include="cpp\Imports\PG_math.cpp" />
+    <ClCompile Include="cpp\Imports\Translation2d.cpp" />
     <ClCompile Include="graphic engine\basicEvents.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -221,16 +224,17 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClInclude Include="include\PathPointGen.h" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\Astar.h" />
     <ClInclude Include="AutoPathGen.h" />
-    <ClInclude Include="include\FieldObject.h" />
-    <ClInclude Include="include\FieldObjectHandler.h" />
-    <ClInclude Include="include\MyMathUtils.h" />
-    <ClInclude Include="include\mock WPI\Translation2d.h" />
+    <ClInclude Include="include\FieldObjects\CircleFO.h" />
+    <ClInclude Include="include\FieldObjects\FieldObject.h" />
+    <ClInclude Include="include\FieldObjects\FOHandler.h" />
+    <ClInclude Include="include\FieldObjects\PolygonFO.h" />
+    <ClInclude Include="include\FieldObjects\RectFO.h" />
+    <ClInclude Include="include\Generator\AStar.h" />
+    <ClInclude Include="include\Generator\PathGen.h" />
+    <ClInclude Include="include\Imports\PG_math.h" />
+    <ClInclude Include="include\Imports\Translation2d.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\TaffyEngine\TaffyEngine\TaffyEngine.vcxproj">
